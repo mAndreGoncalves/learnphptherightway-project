@@ -35,19 +35,27 @@
             </thead>
             <tbody>
                 <!-- TODO -->
+                <?php foreach ($transactions as $transaction): ?>
+                <tr>
+                    <td><?php echo date('M j, Y', strtotime($transaction['transaction_date']) ) ; ?></td>
+                    <td><?php echo $transaction['check_num'];?></td>
+                    <td><?php echo $transaction['description'];?></td>
+                    <?php echo '<td ' . ($transaction['negative']? "style='color:red'> -$" : "style='color:green'> $") . number_format($transaction['absolute_value'],2, ".", "," ) . '</td>' ; ?>
+                </tr>
+                <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $revenue;?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $costs;?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $profit;?>
                 </tr>
             </tfoot>
         </table>
